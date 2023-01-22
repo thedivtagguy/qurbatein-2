@@ -1,0 +1,18 @@
+{
+  "category": {
+    "blue": "#4477AA",
+    "red": "#EE6677",
+    "green": "#228833",
+    "yellow": "#CCBB44",
+    "cyan": "#66CCEE",
+    "purple": "#AA3377",
+    "gray": "#BBBBBB"
+  },
+  "color": {
+    "background": "#F4F3EE",
+    "text": "#38322E",
+    "primary": "#090446",
+    "secondary": "#D1462F",
+    "accent": "#8E7DBE"
+  }
+}

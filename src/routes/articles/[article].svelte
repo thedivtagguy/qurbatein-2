@@ -1,0 +1,143 @@
+<script context="module">
+  export const prerender = true;
+  import "/src/styles/tailwind.css";
+  import content from "$data/content.csv";
+  const stories = content;
+  export async function load({ page }) {
+    try {
+      const post = await import(`../../data/posts/${page.params.article}.json`);
+      // Filter stories by slug
+      const story = stories.filter((story) => story.slug === page.params.article)[0];
+      // Combine data
+      const data = { ...post, ...story };
+      return {
+        // Data passed into svelte component
+        props: {
+          post: data
+        }
+      };
+    } catch (e) {
+      return {
+        props: {
+          post: {
+            title: "404",
+            content: "Page not found"
+          }
+        }
+      };
+    }
+  }
+</script>
+
+<script>
+  import BodyText from "$components/Blocks/BodyText.svelte";
+  import ArticleImage from "$components/Blocks/ArticleImage.svelte";
+  import Pullquote from "$components/Blocks/Pullquote.svelte";
+  import Bio from "$components/Blocks/Bio.svelte";
+  import Footnotes from "$components/Blocks/Footnotes.svelte";
+  import Quote from "$components/Blocks/Quote.svelte";
+  import Endnotes from "$components/Blocks/Endnotes.svelte";
+  import Meta from "$components/Meta.svelte";
+  export let post;
+  let authors = post.author.split(',');
+  authors = authors.map(string => string.trim())
+
+  // Find block of type 'Bio' in the blocks array in post
+  const bio = post.blocks.filter(block => block.Type === 'Bio')[0];
+  // If photo property exists and is comma separated, split into array else just use the string
+  
+  // Only if there is a bio with a photo
+
+  let authorPhotos = [];
+  if (bio) {
+    if (bio.photo.includes(',')) {
+      authorPhotos = bio.photo.split(',');
+      authorPhotos = authorPhotos.map(string => string.trim())
+      bio.photo = authorPhotos;
+    } else {
+      bio.photo = bio.photo.trim();
+      authorPhotos = [bio.photo];
+    }
+  }
+
+  // Assemble Meta component props
+
+  const meta = {
+    title: post.title,
+    description: post.description,
+    slug: post.slug,
+    category: post.category,
+    author: post.author,
+    date: post.date,
+  }
+
+
+</script>
+
+{#if post.title != "404"}
+<Meta {...meta} isPost={true} />
+  <main>
+    <section class="mx-auto container max-w-sm md:max-w-2xl md:w-4/5 pt-12 pb-6">
+      <div class="top mx-auto">
+        <img src="/assets/header.png" class="mx-auto pb-6" width="250" alt={post.title} />
+        <h1
+          class="font-dm md:px-0 px-4 text-5xl text-center italic leading-royal font-extrabold text-[color:var(--color-text)]"
+        >
+          {post.title}
+        </h1>
+        <hr class="border-b-[1px] my-6 border-[color:var(--color-text)] w-[50px] mx-auto" />
+        <h2 class="pb-6 font-libre tracking-wide text-center text-xl">{post.author}</h2>
+      </div>
+    </section>
+
+    <section class="mx-auto px-6 lg:w-2/3">
+      {#each post.blocks as block}
+        {#if block.Type == "Text"}
+          <BodyText text={block.Text} align={block.Direction}/>
+        {/if}
+
+        {#if block.Type == "ArticleImage"}
+          <ArticleImage src={block.Link} caption={block.caption} />
+        {/if}
+
+        {#if block.Type == "pullquote"}
+          <Pullquote text={block.Text} />
+        {/if}
+
+
+        {#if block.Type == "h2"}
+        <section class="py-4 my-4 mx-auto">
+    
+         <h2> {block.Text}</h2>
+        </section>
+        {/if}
+
+        {#if block.Type == "Quote"}
+        <Quote text={block.Text} />
+        {/if}
+      {/each}
+
+      {#if post.endnotes}
+        <Endnotes text={post.endnotes} />
+        {/if}
+
+      {#if post.references}
+        <Footnotes text={post.references} />
+      {/if}
+
+
+      {#each post.blocks as block}
+      {#if block.Type == "Bio"}
+      <Bio text={block.Text} name={authors} image={authorPhotos} />
+    {/if}
+    {/each}
+
+    </section>
+
+  </main>
+{:else}
+  <main>
+    <section class="mx-auto container w-4/5 pt-24 pb-6">Page not found</section>
+  </main>
+{/if}
+

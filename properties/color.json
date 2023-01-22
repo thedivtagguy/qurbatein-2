@@ -1,0 +1,19 @@
+{
+  "color": {
+    "background": {
+      "value": "#F4F3EE"
+    },
+    "text": {
+      "value": "#38322E"
+    },
+    "primary": {
+      "value": "#090446"
+    },
+    "secondary": {
+      "value": "#D1462F"
+    },
+    "accent": {
+      "value": "#8E7DBE"
+    }
+  }
+}

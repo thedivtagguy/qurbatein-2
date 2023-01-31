@@ -54,7 +54,9 @@
     width: 100%;
     height: 100%;
     z-index: -1;
-    background-image: url('/assets/home22.jpg');
+    background-image: url('/images/issue_2_3.jpg');
+    background-size: cover;
+    
     
     /* Background zoom to left  */
     background-position: 20% 40%;

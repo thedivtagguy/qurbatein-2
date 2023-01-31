@@ -11,7 +11,6 @@
   </script>
   
   <main class="bg-[color:var(--color-background)] w-full" id="content">
-    <Meta/>
    <div><Menu/></div>
     <slot />
     <Related related="poetry" number="2" current={$page.params.poem}/>

@@ -32,15 +32,27 @@ export const prerender = true;
     import BodyText from "$components/Blocks/BodyText.svelte";
     import Bio from "$components/Blocks/Bio.svelte";
     import convertToSlug from "$utils/slugify";
+    import Meta from "$components/Meta.svelte";
     // Combine story and post into one object called post
     export let post;
  // Add new key called slug convertToSlug(poem.title)
+  // Assemble Meta component props
+
+  const meta = {
+    title: post.title,
+    description: post.description,
+    slug: post.slug,
+    category: post.category,
+    author: post.author,
+    date: post.date,
+  }
 
 
 </script>
 
 
 {#if post.title != "404"}
+<Meta {...meta} isPost={true} />
 
 <!-- Section 1 -->
 <section class="lg;w-4/5 mx-auto px-4 lg:py-2">
@@ -131,7 +143,9 @@ export const prerender = true;
                     {#if block.Type === 'Text'}
                         <BodyText text ={block.Text} align={block.Direction}/>
                     {/if}
-
+                    {#if block.Type === "h3"}
+                        <h3 class="text-2xl py-6 font-semibold text-[color:var(--color-text)]">{block.Text}</h3>
+                    {/if}
                     {/each}
             </div>
           

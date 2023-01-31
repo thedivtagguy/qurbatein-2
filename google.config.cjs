@@ -5,6 +5,10 @@ module.exports = [
     filepath: "src/data/content.csv"
   },
   {
+    id: "19kwcCK0NLaw6BCGgP5_6OwADwyqt4wkkuq2uaayM4Tc",
+    filepath: "src/data/posts/khata-e-ishq.json"
+  },
+  {
     id: "1r3h8C3TSlkmZ1zm9tYieM7DfnA_xr5qhZ17b0an4-ZM",
     filepath: "src/data/posts/lord-of-the-dance.json"
   },
@@ -35,5 +39,9 @@ module.exports = [
   {
     id: "1y_f88iaqXOkZJMZEXe-YwxXzigbQE0gyjR_HiFQ738k",
     filepath: "src/data/posts/queering-performative-photographs.json"
+  },
+  {
+    id: "1UMgSE6NEUGEbnjmoaMg_rUbD8w_DLq81h5g8shzqEAA",
+    filepath: "src/data/about.json"
   }
 ];

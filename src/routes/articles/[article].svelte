@@ -35,6 +35,7 @@
   import Pullquote from "$components/Blocks/Pullquote.svelte";
   import Bio from "$components/Blocks/Bio.svelte";
   import Footnotes from "$components/Blocks/Footnotes.svelte";
+  import Divider from "$components/Blocks/Divider.svelte";
   import Quote from "$components/Blocks/Quote.svelte";
   import Endnotes from "$components/Blocks/Endnotes.svelte";
   import Meta from "$components/Meta.svelte";
@@ -76,8 +77,8 @@
 
 {#if post.title != "404"}
 <Meta {...meta} isPost={true} />
-  <main>
-    <section class="mx-auto container max-w-sm md:max-w-2xl md:w-4/5 pt-12 pb-6">
+  <main class="max-w-5xl mx-auto">
+    <section class="mx-auto container max-w-sm md:max-w-5xl md:w-4/5 pt-12 pb-6">
       <div class="top mx-auto">
         <img src="/assets/header.png" class="mx-auto pb-6" width="250" alt={post.title} />
         <h1
@@ -90,7 +91,7 @@
       </div>
     </section>
 
-    <section class="mx-auto px-6 lg:w-2/3">
+    <section class="mx-auto max-w-5xl px-6 lg:w-2/3">
       {#each post.blocks as block}
         {#if block.Type == "Text"}
           <BodyText text={block.Text} align={block.Direction}/>
@@ -111,6 +112,10 @@
          <h2> {block.Text}</h2>
         </section>
         {/if}
+
+{#if block.Type === "Divider"}
+      <Divider  style={block.Style} />
+    {/if}
 
         {#if block.Type == "Quote"}
         <Quote text={block.Text} />

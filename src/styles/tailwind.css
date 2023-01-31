@@ -7,9 +7,10 @@
     scroll-behavior: smooth;
     overflow-x: hidden;
   }
-  p , #text {
+  p,
+  #text {
     font-size: 18px;
-    font-family: 'Source Sans Pro', 'sans-serif';
+    font-family: "Source Sans Pro", "sans-serif";
     line-height: 1.85rem;
   }
 
@@ -17,29 +18,26 @@
     @apply underline text-blue-800 hover:text-divpurple decoration-dashed;
   }
 
-   body{
+  body {
     background-color: var(--color-background);
+    max-width: 100rem;
     /* Smooth scroll */
-   }
+  }
 
-   .hover-content{
-      @apply hover:border-2 hover:border-[color:var(--color-accent)] hover:cursor-pointer;
-   }
+  .hover-content {
+    @apply hover:border-2 hover:border-[color:var(--color-accent)] hover:cursor-pointer;
+  }
 
-   .divider{
-    @apply  border-black border-[1px] w-1/2 mx-auto my-6;
+  .divider {
+    @apply border-black border-[1px] w-1/2 mx-auto my-6;
+  }
+  .divider-white {
+    @apply border-white border-[1px] w-1/2 mx-auto my-6;
+  }
 
-   }
-   .divider-white{
-    @apply  border-white border-[1px] w-1/2 mx-auto my-6;
-
-   }
-
-   h2 {
+  h2 {
     @apply text-3xl font-dm font-semibold;
-   }
-
-
+  }
 }
 
 /* Injects Tailwind's component classes & any component classes registered by plugins. */

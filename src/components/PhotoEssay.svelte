@@ -5,7 +5,7 @@
   </script>
 <section class="relative bg-[color:#e3d5ca] w-full">
     <div class="relative w-full justify-center items-center flex flex-row py-10 mx-auto sm:py-12 md:py-16 md:px-16  max-w-9xl">
-        <h2 class="font-cormorant w-full font-bold  leading-10 tracking-tight text-left text-[color:var(--color-text)] md:text-left sm:leading-none text-6xl md:text-6xl px-8 lg:text-[6rem]">Photo Essays</h2>
+        <h2 class="font-cormorant w-full font-bold  leading-10 tracking-tight text-left text-[color:var(--color-text)] md:text-left sm:leading-none text-6xl md:text-6xl px-8 lg:text-[6rem]">Photo Story</h2>
         <div class="w-half h-full pb-10 mt-8 ">
         {#each photoEssay as item, i}
                 <div class="relative   flex flex-col items-start justify-end h-full  overflow-hidden  group md:col-span-6 xl:col-span-4">

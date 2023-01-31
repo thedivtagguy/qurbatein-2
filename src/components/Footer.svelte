@@ -1,41 +1,72 @@
 <script>
-  let d = new Date(); 
-  let currentYear = d.getFullYear(); 
   export const prerender = true;
+
+  import Instagram from "$components/helpers/faInstagram.svelte";
+  import Twitter from "$components/helpers/faTwitter.svelte";
+  import Facebook from "$components/helpers/faFacebookSquare.svelte";
 
   const links = [
     { name: "contact", url: "mailto:csgs@ashoka.ac.in" },
     { name: "twitter", url: "https://twitter.com/csgs_ashoka/" },
-    { name: "facebook", url: "https://facebook.com/csgsashoka"},
+    { name: "facebook", url: "https://facebook.com/csgsashoka" },
     { name: "instagram", url: "https://instagram.com/csgs_ashoka/" }
- 
   ];
-
 </script>
 
-<footer class="max-w-5xl mx-auto py-4">
-<section class="about py-4">
-  <div class="w-[200px] mx-auto pb-4">
-    <a href="https://csgs.ashoka.edu.in/"><img preload src="/assets/full_logo.png" alt="CSGS Logo"/></a>
+<footer>
+  <div >
+    <a href="https://csgs.ashoka.edu.in/"><img preload src="/images/logo.png" alt="CSGS Logo" /></a>
   </div>
 
-  <div class="flex mx-auto font-sans font-bold gap-6 text-xs justify-center items-center ">
-    {#each links as link}
-      <div>
-        <a
-          href={link.url}
-          class="hover:underline underline-offset-2  decoration-dashed hover:text-purple-800">
-          <span>{link.name.toUpperCase()}</span>
+  <p class="description text-center  text-[14px] font-sans   text-white  ">
+    The Centre for Studies in Gender and Sexuality (CSGS) is the first Centre of its kind in India
+    to study the broader spectrum of questions relating to both gender and sexuality.
+  </p>
+  <div class="flex text-white gap-4 flex-col py-4 px-10">
+    <p class="font-bold uppercase">Connect with us</p>
+    <div class="flex flex-row gap-4 justify-center items-center">
+      {#each links as link}
+        <a href={link.url} ref="external">
+          {#if link.name === "twitter"}
+            <Twitter />
+          {:else if link.name === "facebook"}
+            <Facebook />
+          {:else if link.name === "instagram"}
+            <Instagram />
+          {/if}
         </a>
-      </div>
-    {/each}
+      {/each}
+    </div>
   </div>
-  <p class="text-center mx-auto text-xs px-2 py-2 mt-2 font-mono font-semibold  text-black  whitespace-pre-wrap">
-    &copy; Copyright {currentYear} <br>Centre for Studies in Gender and Sexuality, Ashoka University </p>
-    <p class="text-center font-light mx-auto text-[0.6rem]  font-mono text-black  whitespace-pre-wrap">
-     Background photographs by <a class="underline hover:cursor-pointer hover:text-purple-700" href="https://instagram.com/tamedwildflower" rel="external">Srija U</a>
-      </p>
-</section>
-
-
 </footer>
+
+<style>
+  footer {
+    width: 100vw !important;
+    background-color: #0d3862;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 2rem 0;
+  }
+
+  footer img {
+    width: 100%;
+    height: auto;
+  }
+
+  .description {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #fff;
+    width: 30%;
+  }
+
+  @media (max-width: 768px) {
+    footer {
+      flex-direction: column;
+      padding: 2rem 0;
+    }
+  }
+</style>

@@ -36,6 +36,7 @@ export const prerender = true;
     import Bio from "$components/Blocks/Bio.svelte";
     import Footnotes from "$components/Blocks/Footnotes.svelte";
     import Endnotes from "$components/Blocks/Endnotes.svelte";
+    import Meta from "$components/Meta.svelte";
     export let post;
     // Convert comma separated string to array
     let authors = post.author.split(',');
@@ -53,9 +54,23 @@ export const prerender = true;
     }
   }
 
+    // Assemble Meta component props
+
+    const meta = {
+    title: post.title,
+    description: post.description,
+    slug: post.slug,
+    category: post.category,
+    author: post.author,
+    date: post.date,
+  }
+
+
 </script>
 {#if post.title != "404"}
-<main>
+<Meta isPost = {true} {...meta}/>
+
+<main  class="max-w-5xl mx-auto">
 <section class="mx-auto container pt-12 pb-6">
 <div class="top mx-auto">
     <img src="/assets/header.png" class="mx-auto pb-6" width="250" alt={post.title} />

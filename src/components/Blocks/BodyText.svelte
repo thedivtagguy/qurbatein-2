@@ -36,10 +36,3 @@
 <section class="body-text {align}">
     {@html marked(text)}
   </section>
-<style global>
-  sup {
-    font-size: 1em;
-    color: blue;
-    font-weight: 900;
-  }
-</style>
